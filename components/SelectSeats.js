@@ -225,7 +225,12 @@ export default function SelectSeats({ route }) {
         </View>
         <PrimaryButton
           style={{ backgroundColor: SecondaryColor }}
-          onClick={() => navigation.navigate("AddPassenger")}
+          onClick={() =>
+            navigation.navigate("AddPassenger", {
+              bus_id: bus_id,
+              selectedSeats: selectedSeats,
+            })
+          }
           title="Continue"
         />
       </View>

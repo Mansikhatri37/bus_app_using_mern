@@ -4,7 +4,6 @@ import { styles } from "../utils/styles";
 import LocationSelector from "../components/LocationSelector";
 import { Modal, Portal } from "react-native-paper";
 import DateTimePicker from "react-native-ui-datepicker";
-import dayjs from "dayjs";
 import { PrimaryColor } from "../utils/colors";
 import { useNavigation } from "@react-navigation/native";
 import Offers from "../components/Offers";
@@ -16,7 +15,7 @@ import { useDispatch } from "react-redux";
 import { getBuses } from "../actions/busActions";
 
 export default function Home() {
-  const [date, setDate] = useState(dayjs());
+  const [date, setDate] = useState(new Date());
   const [visible, setVisible] = useState(false);
   const [pickup, setPickup] = useState("");
   const [destination, setDestination] = useState("");
@@ -44,11 +43,11 @@ export default function Home() {
 
   // Function to search for buses based on pickup and destination
   const searchBus = async () => {
-    const trimmedPickup = pickup.trim().toLowerCase();
-    const trimmedDestination = destination.trim().toLowerCase();
+    const trimmedPickup = pickup.trim().toLowerCase(); // Ensure pickup is not empty
+    const trimmedDestination = destination.trim().toLowerCase(); // Ensure destination is not empty
 
-    console.log(`Pickup: '${trimmedPickup}'`);
-    console.log(`Destination: '${trimmedDestination}'`);
+    console.log(`Pickup: '${trimmedPickup}'`); // Check if pickup has the correct value
+    console.log(`Destination: '${trimmedDestination}'`); // Check if destination has the correct value
 
     if (trimmedPickup !== "" && trimmedDestination !== "") {
       console.log(
@@ -60,18 +59,14 @@ export default function Home() {
           "http://192.168.1.67:4000/buses/search",
           {
             params: {
-              from: trimmedPickup,
-              to: trimmedDestination,
+              from: trimmedPickup, // Ensure this is correctly passed
+              to: trimmedDestination, // Ensure this is correctly passed
             },
           }
         );
 
-        console.log("response", response);
-
         if (response.data.success && response.data.buses.length > 0) {
-          // Dispatch found buses to the store
           dispatch(getBuses(response.data.buses));
-          // Navigate to the SearchBus screen with the buses data
           navigation.navigate("SearchBus", {
             busesOnRoute: response.data.buses,
           });
@@ -79,18 +74,11 @@ export default function Home() {
           Alert.alert("No Buses Available on This Route");
         }
       } catch (error) {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log("Error", error.message);
-        }
-        console.log(error.config);
+        console.error("Error:", error);
         Alert.alert("An error occurred while searching for buses.");
       }
+    } else {
+      Alert.alert("Please provide valid pickup and destination locations.");
     }
   };
 
@@ -119,7 +107,7 @@ export default function Home() {
         <Card />
         <RateUs />
 
-        <Portal>
+        {/* <Portal>
           <Modal
             visible={visible}
             onDismiss={hideModal}
@@ -135,7 +123,7 @@ export default function Home() {
               selectedItemColor={PrimaryColor}
             />
           </Modal>
-        </Portal>
+        </Portal> */}
       </ScrollView>
     </SafeAreaView>
   );

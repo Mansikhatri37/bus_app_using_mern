@@ -20,7 +20,8 @@ import AboutUs from "../pages/AboutUs";
 import BookingForWomen from "../pages/BookingForWomen";
 import Offers from "../pages/Offers";
 import Settings from "../pages/Settings";
-
+import CreateAccount from "../pages/CreateAccount";
+import RazorpayPaymentScreen from "../pages/RazorpayPaymentScreen";
 import BottomTabNavigator from "./BottomTabNavigator";
 
 export const bottomTabScreens = [
@@ -50,6 +51,20 @@ export const stackScreens = [
   {
     name: "SignIn",
     component: SignIn,
+    options: {
+      headerShown: false,
+    },
+  },
+  {
+    name: "RazorpayPaymentScreen",
+    component: RazorpayPaymentScreen,
+    options: {
+      headerShown: false,
+    },
+  },
+  {
+    name: "createAccount",
+    component: CreateAccount,
     options: {
       headerShown: false,
     },

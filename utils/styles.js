@@ -10,9 +10,8 @@ import {
   SecondaryColor,
   WhiteColor,
   White1Color,
-  BlackColor
+  BlackColor,
 } from "./colors";
-
 
 export const { width, height } = Dimensions.get("screen");
 
@@ -654,7 +653,7 @@ export const styles = StyleSheet.create({
     width: "48%",
   },
   continueButton: {
-    backgroundColor: "#f99333",
+    backgroundColor: "#008000",
     paddingVertical: 8,
     alignItems: "center",
     borderRadius: 12,
@@ -967,6 +966,37 @@ export const styles = StyleSheet.create({
   cityItem: {
     padding: 10,
     borderBottomColor: "eee",
-    borderBottomWidth:0.2
+    borderBottomWidth: 0.2,
   },
-})
+  inputLabel: {
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "left", // This ensures the text is aligned to the left
+    marginLeft: 40, // Ensures no extra margin or padding on the left side
+    width: "100%", // Ensures the label spans the full width of the container (if necessary)
+    color: "#333333",
+  },
+  signintitle: {
+    fontSize: 20,
+    color: "dodgerblue",
+    fontWeight: "900",
+    marginBottom: 5,
+    marginTop: -12,
+  },
+  cityList: {
+    position: "absolute",
+    zIndex: 10,
+    marginLeft: 50,
+    top: 60,
+    backgroundColor: "white",
+    width: "50%",
+  },
+  cityList2: {
+    position: "absolute",
+    zIndex: 10,
+    marginLeft: 50,
+    top: 120,
+    backgroundColor: "white",
+    width: "50%",
+  },
+});

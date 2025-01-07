@@ -98,7 +98,7 @@ module.exports.DeleteBus = async (req, res, next) => {
 };
 
 module.exports.SearchBus = async (req, res) => {
-  const { from, to } = req.params;
+  const { from, to } = req.params; // Get parameters from query (req.query)
 
   console.log(`Searching for buses: from = ${from}, to = ${to}`);
 

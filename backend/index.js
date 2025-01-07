@@ -10,6 +10,8 @@ const reviewRoute = require("./routes/reviewRoutes");
 const seatMapRoute = require("./routes/seatMapsRoutes");
 const ticketRoute = require("./routes/ticketRoutes");
 const operatorRoute = require("./routes/OperatorRoutes");
+const paymentRoute = require("./routes/PaymentRoutes");
+const path = require("path");
 
 require("dotenv").config();
 
@@ -37,6 +39,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/users", userRoute);
+app.use("/auth", authRoute);
 app.use("/admin", AdminRoute);
 app.use("/buses", BusRoute);
 app.use("/location", locationRoute);
@@ -44,8 +47,10 @@ app.use("/review", reviewRoute);
 app.use("/seat-map", seatMapRoute);
 app.use("/ticket", ticketRoute);
 app.use("/operators", operatorRoute);
-app.use("/auth", authRoute);
+app.use("/payment", paymentRoute);
+// app.use("/auth", authRoute);
 
+// Serve the payment.html file when accessed
 
 
 // app.use("/filter", filterRoute);
